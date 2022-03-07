@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- <form> -->
+            <div class="row">
+                <div class="col-sm-5 form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Name" #nameinput>
+                </div>
+                <div class="col-sm-2 form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" #amountinput>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-success" type="submit" style="margin-left:2px" (click)="onAddItem()">Add</button>
+                    <button class="btn btn-danger" type="submit" style="margin-left:2px">Delete</button>
+                    <button class="btn btn-primary" type="submit" style="margin-left:2px">Clear</button>
+                </div>
+            </div>
+        <!-- </form> -->
+    </div>
+</div>
