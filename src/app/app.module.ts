@@ -34,7 +34,8 @@ import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModle
+    AppRoutingModle,
+    FormsModule
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent]

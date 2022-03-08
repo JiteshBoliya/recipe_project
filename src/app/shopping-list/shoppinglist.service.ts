@@ -4,6 +4,7 @@ import { Ingredient } from "../shared/ingredient.model";
 
 export class ShoppingListService {
     ingredientChnaged=new Subject<Ingredient[]>()
+    stratedEditing=new Subject<number>();
     ingredients:Ingredient[] = [
         new Ingredient('patteto',10),
         new Ingredient('tameto',20)

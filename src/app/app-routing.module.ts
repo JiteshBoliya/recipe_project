@@ -12,7 +12,6 @@ const appRoutes:Routes=[
     {path:'', redirectTo:'/recipes', pathMatch:'full'},
     {path:'recipes',component:RecipesComponent,
     children:[
-        //  {path:'',component: RecipesComponent},
         {path:'new',component: RecipeEditComponent},
         {path: ':id',component: RecipeDetailComponent},
         {path: ':id/edit',component: RecipeEditComponent},
@@ -25,7 +24,4 @@ const appRoutes:Routes=[
     imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule]
 })
-
-export class AppRoutingModle{
-    
-}
+export class AppRoutingModle{}
