@@ -27,4 +27,5 @@ export class ShoppingListComponent implements OnInit {
   oneditItem(index:number){
     this.slService.stratedEditing.next(index);
   }
+
 }
