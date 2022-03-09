@@ -6,8 +6,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  mydate: Date;
   constructor() { }
   ngOnInit(): void {
+    
   }
 
 }
