@@ -1,43 +1,67 @@
 <div class="row">
     <div class="col-xs-12">
-        <form>
+        <form [formGroup]="recipeForm">
             <div class="row">
                 <div class="col-xs-12" align="right">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    | <button type="button" class="btn btn-danger">Cancel</button>
+                    <button 
+                        type="submit" 
+                        class="btn btn-success"
+                        [disabled]="!recipeForm.valid"
+                        (click)="onSubmit()"
+                        >Save</button>
+                    | <button 
+                        type="button" 
+                        class="btn btn-danger"
+                        (click)="onCancel()"
+                        >Cancel</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="form-group">
+                        <div class="form-group">
                         <label for="name">Name</label>
-                        <input 
+                            <input 
                             type="text" 
-                            name="" 
-                            id="name" 
+                            name="fn" 
+                            formControlName="name"
                             placeholder="Name"
                             class="form-control"
                             >
+                            <span class="text-danger"
+                                *ngIf="recipeForm.controls['name'].invalid && recipeForm.controls['name'].touched">
+                                Name is required
+                            </span>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-10">
                     <div class="form-group">
                         <label for="name">Image Path</label>
                         <input 
                             type="text" 
                             name="" 
-                            id="imgpath" 
+                            id="imgagepath" 
+                            formControlName="imgpath"
                             placeholder="Image path"
                             class="form-control"
+                            #path
                             >
+                            <span class="text-danger"
+                                *ngIf="recipeForm.controls['imgpath'].invalid && recipeForm.controls['imgpath'].touched">
+                                Image path is required
+                            </span>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <img src="" class="img-responsive">
+                <div class="col-xs-2px">
+                    <img 
+                        src="{{ path.value }}" 
+                        alt="No Image"
+                        class="img-responsive"
+                        height="100px"
+                        width="100px"
+                        style="border-radius: 10px;"
+                        >
                 </div>
             </div>
             <div class="row">
@@ -48,28 +72,69 @@
                             type="text" 
                             name="" 
                             id="description" 
+                            formControlName="description"
                             placeholder="Name"
                             class="form-control"
                             row="6"
                             ></textarea>
+                            <span class="text-danger"
+                                *ngIf="recipeForm.controls['description'].invalid && recipeForm.controls['description'].touched">
+                                Description is required
+                            </span>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="row">
+                <div class="col-xs-12" formArrayName="ingredients">
+                    <div 
+                        class="row" 
+                        *ngFor="let ingredientctr of getControls();let i=index"
+                        [formGroupName]="i"                 
+                        style="margin-top:3px;"
+                        >
                         <div class="col-xs-8">
-                            <input type="text" name="" placeholder="Ingredient" class="form-control">
+                            <input 
+                                type="text" 
+                                name="" 
+                                formControlName="name"
+                                placeholder="Ingredient" 
+                                class="form-control"
+                                >
+                                 
                         </div>
                         <div class="col-xs-2">
-                            <input type="number" name="" placeholder="Amount" class="form-control">
+                            <input 
+                                type="number" 
+                                name="" 
+                                formControlName="amount"
+                                placeholder="Amount" 
+                                class="form-control"
+                                >
+                                
                         </div>
                         <div class="col-xs-2">
-                            <button class="btn btn-danger">X</button>
+                            <button 
+                                type="button" 
+                                class="btn btn-danger"
+                                (click)="onDelete(i)"
+                                >X</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary"
+                        (click)="onAddIngredinent()"
+                        >
+                        Add Ingredient
+                    </button>
+                </div>
+            </div>
+            
         </form>
     </div>
 </div>

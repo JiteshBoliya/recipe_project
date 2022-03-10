@@ -1,6 +1,7 @@
 <div style="padding: 50px">
   <div class="row"></div>
   <div class="row" align="left">
+    
     <div class="col-xs-8">
       <div>
         <span style="font-size: 50px">{{ recipe.name }}</span
@@ -24,7 +25,10 @@
               <a routerLink="edit" style="cursor: pointer">Edit Recipe</a>
             </li>
             <li class="dropdown-item">
-              <a style="cursor: pointer">Delete Recipe</a>
+              <a 
+                style="cursor: pointer"
+                (click)="onDelete()"
+                >Delete Recipe</a>
             </li>
           </ul>
         </div>
@@ -35,9 +39,9 @@
           {{ recipe.description }}
         </b>
         <br /><br />
-        <ul class="list-group col-md-2">
+        <ul class="list-group col-md-4">
           <li class="list-group-item" *ngFor="let ing of recipe.ingredient">
-            {{ ing.name }}-{{ ing.amount }}
+            {{ ing.name }} <span class="badge badge-success">{{ ing.amount }}</span>
           </li>
         </ul>
       </div>

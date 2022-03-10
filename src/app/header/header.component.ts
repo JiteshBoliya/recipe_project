@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { RecipeService } from '../recipes/recipe.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,13 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   mydate: Date;
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
   ngOnInit(): void {
-    
   }
-
+  onSave(){
+    this.recipeService.storeRecipe();
+  }
+  onFatch(){
+    this.recipeService.fatchRecipe();
+  }
 }

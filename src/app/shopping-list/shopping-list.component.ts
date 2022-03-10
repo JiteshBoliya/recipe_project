@@ -21,9 +21,9 @@ export class ShoppingListComponent implements OnInit {
       this.ingredients=ingredient;
     });
   }
-  ngOnDestroy(): void {
-    this.igChangeSub.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.igChangeSub.unsubscribe();
+  // }
   oneditItem(index:number){
     this.slService.stratedEditing.next(index);
   }

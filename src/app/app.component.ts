@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListService } from './shopping-list/shoppinglist.service';
 
@@ -6,7 +6,11 @@ import { ShoppingListService } from './shopping-list/shoppinglist.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ShoppingListService]
+  providers: [ShoppingListService,RecipeService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    this.mydate=new Date();
+  }
+  mydate: Date;
 }

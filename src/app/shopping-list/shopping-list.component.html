@@ -1,16 +1,15 @@
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <app-shopping-edit>loading....</app-shopping-edit>
         <hr>
         <ul class="list-group">
             <a 
-             
                 class="list-group-item" 
                 style="cursor: pointer;" 
                 *ngFor="let item of ingredients;let i=index"
                 (click)="oneditItem(i)"                
                 >
-                {{item.name}} ({{item.amount}})
+                {{item.name}} <span class="badge badge-success">{{item.amount}}</span>
             </a>
         </ul>
     </div>
