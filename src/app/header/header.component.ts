@@ -8,13 +8,21 @@ import { RecipeService } from '../recipes/recipe.service';
 })
 export class HeaderComponent implements OnInit {
   mydate: Date;
+
+  // Injecting Service
   constructor(private recipeService: RecipeService) { }
   ngOnInit(): void {
+    this.mydate=new Date();
   }
+
+  // Call service method
   onSave(){
     this.recipeService.storeRecipe();
   }
   onFatch(){
     this.recipeService.fatchRecipe();
+  }
+  onlogin(){
+      
   }
 }
