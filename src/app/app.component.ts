@@ -9,6 +9,8 @@ import { ShoppingListService } from './shopping-list/shoppinglist.service';
   providers: [ShoppingListService,RecipeService]
 })
 export class AppComponent implements OnInit {
+  public static user:string ;
+  // static user: any;
   ngOnInit(): void {
     this.mydate=new Date();
   }

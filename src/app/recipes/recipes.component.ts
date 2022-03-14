@@ -8,5 +8,8 @@ import { RecipeService } from './recipe.service';
   //  providers: [RecipeService]
 })
 export class RecipesComponent implements OnInit {
-  ngOnInit(){}
+  constructor(private recipeService: RecipeService){}
+  ngOnInit(){
+    this.recipeService.fatchRecipe();
+  }
 }

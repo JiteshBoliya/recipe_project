@@ -1,0 +1,12 @@
+.nv{
+    float: right;
+    list-style-type: none;
+    box-shadow: -5px 0px 5px black;
+    border-radius:10px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+/* .nv:hover{
+    box-shadow: 0px 0px 10px black;
+
+} */

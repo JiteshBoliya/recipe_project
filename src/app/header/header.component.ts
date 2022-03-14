@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { RecipeService } from '../recipes/recipe.service';
 
 @Component({
@@ -8,11 +10,15 @@ import { RecipeService } from '../recipes/recipe.service';
 })
 export class HeaderComponent implements OnInit {
   mydate: Date;
-
+  isAuthenticated= false;
+  private usersub:Subscription;
   // Injecting Service
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService,private authService: AuthService) { }
   ngOnInit(): void {
     this.mydate=new Date();
+    this.authService.user.subscribe(user=>{
+        this.isAuthenticated = !!user;
+    });
   }
 
   // Call service method
@@ -20,9 +26,12 @@ export class HeaderComponent implements OnInit {
     this.recipeService.storeRecipe();
   }
   onFatch(){
-    this.recipeService.fatchRecipe();
+    // this.recipeService.fatchRecipe().subscribe();
   }
   onlogin(){
       
+  }
+  ngOnDestroy(){
+    this.usersub.unsubscribe(); 
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 import { AuthService } from './auth.service';
 
@@ -10,7 +12,11 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   islogin = false;
-  constructor(private authService: AuthService) {}
+  isLoading=false;
+  error: any=null;
+  success: any=null;
+  user: any=null;
+  constructor(private authService: AuthService,private router: Router) {}
 
   ngOnInit(): void {}
   onSwitchmode() {
@@ -18,13 +24,40 @@ export class AuthComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     console.log(form.value);
-    form.reset();
+    this.isLoading=true;
     const email = form.value.email;
     const password = form.value.password;
-    if (this.islogin) {
-      this.authService.signup(email, password).subscribe((resData) => {
+    if (!this.islogin) {
+      this.authService.signup(email, password).subscribe(resData => {
         console.log(resData);
-      });
+        this.isLoading=false;
+         this.error="";
+         this.success="SignUp Successfully";
+         this.router.navigate(['/recipes']);
+      }
+      ,errorMassage => {
+        this.error=errorMassage;
+        this.isLoading=false;
+      }
+      )
+    }else{
+      this.authService.loginIn(email, password).subscribe(resData => {
+        console.log(resData);
+        this.isLoading=false;
+        this.error="";
+        this.success="Login Successfully";
+        //  AppComponent.user=email;
+        // this.user=email;
+        this.router.navigate(['/recipes']);
+ 
+      }
+      ,errorMassage => {
+        this.error=errorMassage;
+        this.isLoading=false;
+      }
+      )
+
     }
+    form.reset();
   }
 }

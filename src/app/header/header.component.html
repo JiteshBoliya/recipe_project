@@ -5,13 +5,26 @@
         </div>
         <div class="navbar-collapse">
             <ul class="nav navbar-nav nav nvb">
-                <li routerLinkActive="active"><a routerLink="" class="nav-link ">Recipes</a></li>
+                
+                <!-- Router/Routing -->
+                <li routerLinkActive="active"><a routerLink="" class="nav-link " *ngIf="isAuthenticated">Recipes</a></li>
                 <li routerLinkActive="active"><a routerLink="shopping-list" class="nav-link">Shopping List</a></li>
             </ul>
+            <ul class="nav navbar-nav nv">
+                
+                <!-- Pipe  -->
+                <li ><a class="nav-link">{{mydate|date:"fullDate" }}</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" appDropdown>
+                <li routerLinkActive="active">
+                    <a style="cursor: pointer;" routerLink="auth" class="nav-link" role="button" *ngIf="!isAuthenticated">Login</a>
+                    <a style="cursor: pointer;" routerLink="auth" class="nav-link" role="button" *ngIf="isAuthenticated">Logout</a>
+                </li>
+                <li class="dropdown" appDropdown routerLinkActive="active"*ngIf="isAuthenticated">
                     <a style="cursor: pointer;" class="dropdown-toggle nav-link" role="button">Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu "  >
+
+                        <!-- Click event -->
                         <li class="dropdown-item"><a style="cursor: pointer;" (click)="onSave()">Save data</a></li>
                         <li class="dropdown-item"><a style="cursor: pointer;" (click)="onFatch()">Fatch Data</a></li>
                     </ul>

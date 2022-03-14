@@ -1,0 +1,64 @@
+<div class="row" align="center" style="height: inherit;">
+  <app-spinner-loading *ngIf="isLoading"></app-spinner-loading>
+  <div class="col-xs-12" *ngIf="!isLoading">
+    <div class="contain" *ngIf="!success">
+      <h3>Login</h3>
+      <hr />
+      <form align="left" #authform="ngForm" (ngSubmit)="onSubmit(authform)">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          ngModel
+          name="email"
+          class="form-control"
+          placeholder="email"
+          required
+        />
+        <br />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          ngModel
+          name="password"
+          class="form-control"
+          placeholder="Password"
+          required
+          minlength="6"
+        />
+        <br />
+        <button
+          type="submit"
+          class="btn btn-block {{
+            !islogin ? 'btn btn-primary' : 'btn btn-success'
+          }}"
+          [disabled]="!authform.valid"
+        >
+          {{ !islogin ? "Sign Up" : "Login" }}
+        </button>
+        <br /><button
+          type="button"
+          class="btn btn-block"
+          style="
+            background-color: rgb(143, 143, 143);
+            color: white;
+            font-style: oblique;
+          "
+          (click)="onSwitchmode()"
+        >
+          Switch to {{ !islogin ? "Login" : "Sign Up" }}
+        </button>
+        <hr />
+      </form>
+      <div class="alert alert-danger" *ngIf="error">
+        {{error}}
+    </div>
+    <div class="alert alert-success" *ngIf="success">
+      {{success}}
+  </div>
+    </div>
+    <div class="contain" *ngIf="success">
+      Welcome <b>{{user}}</b> 
+    </div>
+    
+  </div>
+</div>

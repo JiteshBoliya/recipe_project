@@ -1,15 +1,16 @@
 import { EventEmitter, Injectable } from "@angular/core";
-import {HttpClient } from "@angular/common/http";
-import { Subject } from "rxjs";
+import {HttpClient, HttpParams } from "@angular/common/http";
+import { exhaustMap, map, Subject, take, tap } from "rxjs";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shoppinglist.service";
 import { Recipe } from "./recipe.model";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class RecipeService {
     recipechanged= new Subject<Recipe[]>();
     private  recipes: Recipe[]=[];
-    constructor(private slService: ShoppingListService,private http: HttpClient) {}
+    constructor(private slService: ShoppingListService,private http: HttpClient,private auth: AuthService) {}
    
     getRecipe(){
        return this.recipes.slice();
@@ -44,10 +45,23 @@ export class RecipeService {
         })
     }
     fatchRecipe(){
-        this.http.get<Recipe[]>('https://recipe-v1-default-rtdb.firebaseio.com/recipe.json')
-        .subscribe(recipe=>{
-            this.recipes=recipe;
-        this.recipechanged.next(this.recipes.slice());
+        this.auth.user.pipe(take(1),
+            exhaustMap(user=>{
+                return this.http
+        .get<Recipe[]>('https://recipe-v1-default-rtdb.firebaseio.com/recipe.json',{
+            params:new HttpParams().set('auth',user.token)
         })
+        .pipe(
+            map(recipe=>{
+                return recipe.map(recipe=>{ 
+                    return {...recipe,ingredients:recipe.ingredient?recipe.ingredient:[]} })})
+        ,tap(recipe=>{
+            this.recipes=recipe;
+            this.recipechanged.next(this.recipes.slice());        
+        })
+        )
+            })
+        )
+        
     }
 }
