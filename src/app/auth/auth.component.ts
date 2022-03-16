@@ -46,8 +46,6 @@ export class AuthComponent implements OnInit {
         this.isLoading=false;
         this.error="";
         this.success="Login Successfully";
-        //  AppComponent.user=email;
-        // this.user=email;
         this.router.navigate(['/recipes']);
  
       }

@@ -7,7 +7,7 @@
             <ul class="nav navbar-nav nav nvb">
                 
                 <!-- Router/Routing -->
-                <li routerLinkActive="active"><a routerLink="" class="nav-link " *ngIf="isAuthenticated">Recipes</a></li>
+                <li routerLinkActive="active"*ngIf="isAuthenticated"><a routerLink="" class="nav-link " >Recipes</a></li>
                 <li routerLinkActive="active"><a routerLink="shopping-list" class="nav-link">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav nv">
@@ -17,10 +17,23 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li routerLinkActive="active">
-                    <a style="cursor: pointer;" routerLink="auth" class="nav-link" role="button" *ngIf="!isAuthenticated">Login</a>
-                    <a style="cursor: pointer;" routerLink="auth" class="nav-link" role="button" *ngIf="isAuthenticated">Logout</a>
+                    <a 
+                        style="cursor: pointer;" 
+                        routerLink="auth"   
+                        class="nav-link" 
+                        role="button" 
+                        *ngIf="!isAuthenticated"
+                        >Login</a>
+                    <a 
+                        style="cursor: pointer;" 
+                        routerLink="auth" 
+                        class="nav-link" 
+                        role="button" 
+                        *ngIf="isAuthenticated"
+                        (click)="onlogout()"
+                        >Logout</a>
                 </li>
-                <li class="dropdown" appDropdown routerLinkActive="active"*ngIf="isAuthenticated">
+                <li class="dropdown" appDropdown routerLinkActive="active" *ngIf="isAuthenticated">
                     <a style="cursor: pointer;" class="dropdown-toggle nav-link" role="button">Manage <span class="caret"></span></a>
                     <ul class="dropdown-menu "  >
 

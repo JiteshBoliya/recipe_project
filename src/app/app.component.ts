@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 import { RecipeService } from './recipes/recipe.service';
 import { ShoppingListService } from './shopping-list/shoppinglist.service';
 
@@ -9,10 +10,10 @@ import { ShoppingListService } from './shopping-list/shoppinglist.service';
   providers: [ShoppingListService,RecipeService]
 })
 export class AppComponent implements OnInit {
-  public static user:string ;
-  // static user: any;
+  constructor(private authService: AuthService){}
   ngOnInit(): void {
     this.mydate=new Date();
+    this.authService.autologin();
   }
   mydate: Date;
 }

@@ -26,10 +26,10 @@ export class HeaderComponent implements OnInit {
     this.recipeService.storeRecipe();
   }
   onFatch(){
-    // this.recipeService.fatchRecipe().subscribe();
+    this.recipeService.fatchRecipe().subscribe();
   }
-  onlogin(){
-      
+  onlogout(){
+    this.authService.logout();
   }
   ngOnDestroy(){
     this.usersub.unsubscribe(); 
