@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { RecipeService } from '../recipes/recipe.service';
 import { Ingredient } from '../shared/ingredient.model';
@@ -12,7 +13,10 @@ import { ShoppingListService } from './shoppinglist.service';
 export class ShoppingListComponent implements OnInit {
   ingredients:Ingredient[];
   private igChangeSub : Subscription;
-  constructor(private slService: ShoppingListService) { }
+  constructor(
+    private slService: ShoppingListService,
+    // private store:Store
+    ) { }
 
   ngOnInit(){
     this.ingredients= this.slService.getIngredient();

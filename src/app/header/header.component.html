@@ -7,13 +7,13 @@
             <ul class="nav navbar-nav nav nvb">
                 
                 <!-- Router/Routing -->
-                <li routerLinkActive="active"*ngIf="isAuthenticated"><a routerLink="" class="nav-link " >Recipes</a></li>
+                <li routerLinkActive="active" *ngIf="isAuthenticated"><a routerLink="recipes" class="nav-link " >Recipes</a></li>
                 <li routerLinkActive="active"><a routerLink="shopping-list" class="nav-link">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav nv">
                 
                 <!-- Pipe  -->
-                <li ><a class="nav-link">{{mydate|date:"fullDate" }}</a></li>
+                <!-- <li ><a class="nav-link">{{mydate| Date:"fullDate" }}</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li routerLinkActive="active">

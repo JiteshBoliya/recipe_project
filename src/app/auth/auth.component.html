@@ -49,9 +49,17 @@
         </button>
         <hr />
       </form>
-      <div class="alert alert-danger" *ngIf="error">
+      <!-- <div class="alert alert-danger" *ngIf="error">
         {{error}}
-    </div>
+    </div> -->
+
+    <app-alert-msg 
+      [massage]="error" 
+      *ngIf="error"
+      (close)="onHandleError()"
+      >
+    </app-alert-msg>
+
     <div class="alert alert-success" *ngIf="success">
       {{success}}
   </div>
