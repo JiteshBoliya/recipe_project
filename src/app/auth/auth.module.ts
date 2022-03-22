@@ -12,7 +12,7 @@ import { CommonModule } from "@angular/common";
         CommonModule,
         FormsModule,
         RouterModule.forChild([{
-            path:'auth',
+            path:'',
             component: AuthComponent
         }]),
         SharedModule,
