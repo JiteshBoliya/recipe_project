@@ -6,7 +6,8 @@
             <a 
                 class="list-group-item" 
                 style="cursor: pointer;" 
-                *ngFor="let item of ingredients;let i=index"
+               
+                *ngFor="let item of (ingrediente|async).ingrediente;let i=index"
                 (click)="oneditItem(i)"                
                 >
                 {{item.name}} <span class="badge badge-success">{{item.amount}}</span>

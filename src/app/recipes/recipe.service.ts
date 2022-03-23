@@ -5,17 +5,25 @@ import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shoppinglist.service";
 import { Recipe } from "./recipe.model";
 import { AuthService } from "../auth/auth.service";
+import { Store } from "@ngrx/store";
+import * as ShoppingListActions from "../shopping-list/store/shopping-list.actions"
 @Injectable()
 export class RecipeService {
     recipechanged = new Subject<Recipe[]>();
     private recipes: Recipe[] = [];
-    constructor(private slService: ShoppingListService, private http: HttpClient, private auth: AuthService) { }
+    constructor(
+        private slService: ShoppingListService, 
+        private http: HttpClient, 
+        private auth: AuthService,
+        private store: Store<{shoppingList:{ingredients:Ingredient[]}}>
+        ) { }
 
     getRecipe() {
         return this.recipes.slice();
     }
     addIngredienttoshopping(ingredient: Ingredient[]) {
-        this.slService.addIngredients(ingredient);
+        // this.slService.addIngredients(ingredient);
+        this.store.dispatch(new ShoppingListActions.AddIngredients(ingredient))
     }
     getrec(id: number) {
         return this.recipes[id];
